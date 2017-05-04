@@ -1,0 +1,73 @@
+				if (symbolFound)
+                {
+                    foreach (var curve in walloutlines)
+                    {
+                        XYZ normal = (curve[0] as Line).Direction.CrossProduct((curve[1] as Line).Direction);
+                        //normal = (curve[0] as Line).Direction.CrossProduct((curve[1] as Line).Direction);
+                        foreach (var cv in curve)
+                        {
+                            string levelName = "标高 2";
+                            Level level = GetLevel(document, levelName);
+                            if (General.IsTwoDirectionParallel((cv as Line).Direction, XYZ.BasisZ))
+                            {
+                                FamilyInstance wallColumn = document.Create.NewFamilyInstance(cv.GetEndPoint(0),
+                                    trussColumnType, level, StructuralType.Column);
+                                if (General.IsHalfOfPI(normal, OrientationZ(wallColumn)))
+                                {
+                                    wallColumn.Location.Rotate((cv as Line), Math.PI);
+                                }
+                            }
+                            if (General.IsTwoDirectionParallel((cv as Line).Direction, XYZ.BasisX ) || General.IsTwoDirectionParallel((cv as Line).Direction, XYZ.BasisY))
+                            {
+                                FamilyInstance wallColumn = document.Create.NewFamilyInstance(cv, trussBeamType, level,
+                                StructuralType.Beam);
+                                StructuralFramingUtils.DisallowJoinAtEnd(wallColumn, 0);
+                                StructuralFramingUtils.DisallowJoinAtEnd(wallColumn, 1);
+                            }
+                            
+
+                            //对杆件进行旋转
+                            //if (General.IsEqualDirection(normal, OrientationY(wallColumn)))
+                            //{
+                            //    //表面杆件开口方向正确，不作操作
+                            //}
+                            //else if (General.IsReverseDirection(normal, OrientationY(wallColumn)))
+                            //{
+                            //    wallColumn.Location.Rotate((cv as Line), Math.PI);
+                            //}
+                            //else if (General.IsHalfOfPI(normal, OrientationY(wallColumn)))
+                            //{
+                            //    wallColumn.Location.Rotate((cv as Line), Math.PI / 2);
+                            //}
+                            //else if (General.IsOneAndHalfOfPI(normal, OrientationY(wallColumn)))
+                            //{
+                            //    wallColumn.Location.Rotate((cv as Line), Math.PI * 3 / 2);
+                            //}
+                            //else
+                            //{
+                            //    throw new Exception("有奇怪方向！！！");
+                            //}
+                            //将创建的族实例以中性轴为旋转轴，旋转一定的角度
+                            //wallOutlinesTruss.get_Parameter(BuiltInParameter.STRUCTURAL_BEND_DIR_ANGLE).Set(Math.PI); 
+                        }
+                    }
+
+                    foreach (var openingOutline in openingOutlines)
+                    {
+                        foreach (var opening in openingOutline)
+                        {
+                            foreach (var cv in opening)
+                            {
+                                string levelName = "标高 2";
+                                Level level = GetLevel(document, levelName);
+                                FamilyInstance wallOutlinesTruss = document.Create.NewFamilyInstance(cv, trussColumnType,
+                                    level,
+                                    StructuralType.Beam);
+                                StructuralFramingUtils.DisallowJoinAtEnd(wallOutlinesTruss, 0);
+                                StructuralFramingUtils.DisallowJoinAtEnd(wallOutlinesTruss, 1);
+                                //将创建的族实例以中性轴为旋转轴，旋转一定的角度
+                                //wallOutlinesTruss.get_Parameter(BuiltInParameter.STRUCTURAL_BEND_DIR_ANGLE).Set(Math.PI); 
+                            }
+                        }
+                    }
+                }

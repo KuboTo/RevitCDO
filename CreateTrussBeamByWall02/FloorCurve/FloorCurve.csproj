@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6818BF3C-C78A-4CB5-9C8F-46C94D2D18D7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FloorCurve</RootNamespace>
+    <AssemblyName>FloorCurve</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RevitAPI">
+      <HintPath>..\..\..\..\安装软件\revit\Revit 2015\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>..\..\..\..\安装软件\revit\Revit 2015\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnalyticalRoof.cs" />
+    <Compile Include="AssemblyInstanceCreator.cs" />
+    <Compile Include="Beam.cs" />
+    <Compile Include="BeamInstanceGetter.cs" />
+    <Compile Include="Brace.cs" />
+    <Compile Include="BraceInstanceGetter.cs" />
+    <Compile Include="CmdFloorCurveWebTruss01.cs" />
+    <Compile Include="Column.cs" />
+    <Compile Include="ColumnInstanceGetter.cs" />
+    <Compile Include="CommonUtil.cs" />
+    <Compile Include="CreateWallTruss.cs" />
+    <Compile Include="FamilyInstanceGetter.cs" />
+    <Compile Include="FloorSheet.cs" />
+    <Compile Include="General.cs" />
+    <Compile Include="GraphicAlgorithm.cs" />
+    <Compile Include="House.cs" />
+    <Compile Include="InaccurateBraceFailyre.cs" />
+    <Compile Include="Member.cs" />
+    <Compile Include="DimensionUtil.cs" />
+    <Compile Include="Parameter.cs" />
+    <Compile Include="ParameterProperity.cs" />
+    <Compile Include="Polygon2D.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Purlin.cs" />
+    <Compile Include="Roof.cs" />
+    <Compile Include="RoofBuildercs.cs" />
+    <Compile Include="RoofPurlin.cs" />
+    <Compile Include="RoofTruss.cs" />
+    <Compile Include="SheetInfo.cs" />
+    <Compile Include="ViewerGetter.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
