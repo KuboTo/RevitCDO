@@ -64,6 +64,7 @@
     <Compile Include="FloorSheet.cs" />
     <Compile Include="General.cs" />
     <Compile Include="GraphicAlgorithm.cs" />
+    <Compile Include="GridsBuilder.cs" />
     <Compile Include="House.cs" />
     <Compile Include="InaccurateBraceFailyre.cs" />
     <Compile Include="Member.cs" />
