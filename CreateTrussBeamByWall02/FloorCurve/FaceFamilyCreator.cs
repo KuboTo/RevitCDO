@@ -168,7 +168,7 @@ namespace FloorCurve
             if (Doc.PathName != null && Doc.PathName != "")
             {
                 currentPathName = Path.GetDirectoryName(Doc.PathName);
-                currentPathName = currentPathName + "\\" + Path.GetFileNameWithoutExtension(Doc.PathName)
+                currentPathName = currentPathName + "\\" + Path.GetFileNameWithoutExtension(Doc.PathName);
             }
             else
             {
@@ -210,7 +210,7 @@ namespace FloorCurve
             //对象引用数组
             ReferenceArray rfArray = new ReferenceArray();
             rfArray.Append(bottomRef);
-            rfArray.Append(topRef);
+            rfArray.Append(topRef); 
             //添加参照标高面
             View currentView = this.GetView("参照标高");
             Line dimension = Line.CreateBound(bottomPnt, topPnt);
